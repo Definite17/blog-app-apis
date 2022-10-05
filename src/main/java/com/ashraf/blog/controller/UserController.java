@@ -1,7 +1,6 @@
 package com.ashraf.blog.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	//POST- create user
+	//POST-create user
 	@PostMapping("/")
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
 		UserDto createUserDto = this.userService.createUSer(userDto);
@@ -43,26 +42,25 @@ public class UserController {
 		return ResponseEntity.ok(updatedUserDto);
 	}
 	
-	
 	// DELETE- delete user
 	@DeleteMapping("/{userId}")
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer userId){
 		this.userService.deleteUser(userId);
 		
-//		return ResponseEntity.ok(Map.of("message", "user deleted successfully"));
+		// return ResponseEntity.ok(Map.of("message", "user deleted successfully"));
 		
 		// OR
 		
-		return new ResponseEntity<ApiResponse>(new ApiResponse("USer Deleted Successfully", true), HttpStatus.OK);
+		return new ResponseEntity<>(new ApiResponse("USer Deleted Successfully", true), HttpStatus.OK);
 	} 
 	
-	//GET- get user
+	//GET-get user
 	@GetMapping("/")
 	public ResponseEntity<List<UserDto>> getAllUsers(){
 		return ResponseEntity.ok(this.userService.getAllUsers());
 	}
 	
-	//GET- get user
+	//GET-get user
 	@GetMapping("/{userId}")
 	public ResponseEntity<UserDto> getUserById(@PathVariable Integer userId){
 		return ResponseEntity.ok(this.userService.getUserById(userId));
