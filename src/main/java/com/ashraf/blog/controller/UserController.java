@@ -17,6 +17,8 @@ import com.ashraf.blog.payloads.ApiResponse;
 import com.ashraf.blog.payloads.UserDto;
 import com.ashraf.blog.service.UserService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
 	
 	//POST-create user
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
 		UserDto createUserDto = this.userService.createUSer(userDto);
 		
 		return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
@@ -34,9 +36,9 @@ public class UserController {
 	
 	//PUT- update user
 	@PutMapping("/{userId}")
-	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Integer uid){
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") Integer uid){
 		UserDto updatedUserDto = new UserDto();
-		
+
 		updatedUserDto = this.userService.updateUser(userDto, uid);
 		
 		return ResponseEntity.ok(updatedUserDto);
