@@ -13,7 +13,7 @@ public interface PostService {
 
     void deletePost(Integer postId);
 
-    List<Post> getAllPost();
+    List<PostDto> getAllPost();
 
     Post getPostById(Integer postId);
 
