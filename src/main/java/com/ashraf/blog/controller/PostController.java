@@ -50,4 +50,11 @@ public class PostController {
         return ResponseEntity.ok(postDtos);
     }
 
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId){
+        PostDto postDto = this.postService.getPostById(postId);
+
+        return ResponseEntity.ok(postDto);
+    }
+
 }
