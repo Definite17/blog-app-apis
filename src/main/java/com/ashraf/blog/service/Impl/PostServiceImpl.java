@@ -77,7 +77,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post getPostById(Integer postId) {
+    public PostDto getPostById(Integer postId) {
+
+
         return null;
     }
 
