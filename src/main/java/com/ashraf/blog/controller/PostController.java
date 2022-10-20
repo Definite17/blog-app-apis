@@ -31,10 +31,12 @@ public class PostController {
     }
 
     @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<PostDto>> getPostByCategory(@PathVariable Integer categoryId){
-        List<PostDto> postDtos = postService.getPostByCategory(categoryId);
+    public ResponseEntity<PostResponse> getPostByCategory(@PathVariable Integer categoryId,
+                                                           @RequestParam(value = "pageNumber", defaultValue ="0", required = false) Integer pageNumber,
+                                                           @RequestParam(value = "pageSize", defaultValue = "2", required = false) Integer pageSize){
+        PostResponse postResponse = postService.getPostByCategory(categoryId, pageNumber, pageSize);
 
-        return ResponseEntity.ok(postDtos);
+        return new ResponseEntity<>(postResponse, HttpStatus.OK);
     }
 
     @GetMapping("/user/{userId}")

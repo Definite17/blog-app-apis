@@ -101,15 +101,26 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getPostByCategory(Integer categoryId) {
+    public PostResponse getPostByCategory(Integer categoryId, Integer pageNumber, Integer pageSize) {
         Category category =this.categoryRepo.findById(categoryId)
                 .orElseThrow(()-> new ResourceNotFoundException("Category", "Category Id", categoryId));
-        List<Post> posts = this.postRepo.findByCategory(category);
 
+        Pageable p =PageRequest.of(pageNumber, pageSize);
+        Page<Post> pagePost = this.postRepo.findByCategory(category, p);
+
+        List<Post> posts =pagePost.getContent();
         List<PostDto> postDtos = posts.stream().map((post) -> this.modelMapper.map(post, PostDto.class))
                 .collect(Collectors.toList());
 
-        return postDtos;
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+        postResponse.setPageNumber(pagePost.getNumber());
+        postResponse.setPageSize(pagePost.getSize());
+        postResponse.setTotalElements(pagePost.getTotalElements());
+        postResponse.setTotalPages(pagePost.getTotalPages());
+        postResponse.setLastPage(pagePost.isLast());
+
+        return postResponse;
     }
 
     @Override
