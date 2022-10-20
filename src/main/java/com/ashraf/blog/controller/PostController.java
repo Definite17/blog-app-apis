@@ -3,6 +3,7 @@ package com.ashraf.blog.controller;
 
 import com.ashraf.blog.entities.Post;
 import com.ashraf.blog.payloads.PostDto;
+import com.ashraf.blog.payloads.PostResponse;
 import com.ashraf.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,13 +45,13 @@ public class PostController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<PostDto>> getAllPost(
+    public ResponseEntity<PostResponse> getAllPost(
             @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-            @RequestParam(value = "pageSize", defaultValue = "1",required = false) Integer pageSize
+            @RequestParam(value = "pageSize", defaultValue = "5",required = false) Integer pageSize
     ){
-        List<PostDto> postDtos = this.postService.getAllPost(pageNumber, pageSize);
+        PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize);
 
-        return ResponseEntity.ok(postDtos);
+        return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{postId}")

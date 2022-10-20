@@ -5,6 +5,7 @@ import com.ashraf.blog.entities.Post;
 import com.ashraf.blog.entities.User;
 import com.ashraf.blog.exception.ResourceNotFoundException;
 import com.ashraf.blog.payloads.PostDto;
+import com.ashraf.blog.payloads.PostResponse;
 import com.ashraf.blog.repository.CategoryRepo;
 import com.ashraf.blog.repository.PostRepo;
 import com.ashraf.blog.repository.UserRepo;
@@ -71,10 +72,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
-
-//        int pageSize = 5;
-//        int pageNumber=1;
+    public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
 
         Pageable p= PageRequest.of(pageNumber, pageSize);
         Page<Post> pagePost = this.postRepo.findAll(p);
@@ -83,7 +81,15 @@ public class PostServiceImpl implements PostService {
         List<PostDto> postDtos = allPosts.stream().map((post) -> this.modelMapper.map(post, PostDto.class))
                 .collect(Collectors.toList());
 
-        return postDtos;
+        PostResponse postResponse =new PostResponse();
+        postResponse.setContent(postDtos);
+        postResponse.setPageNumber(pagePost.getNumber());
+        postResponse.setPageSize(pagePost.getSize());
+        postResponse.setTotalElements(pagePost.getTotalElements());
+        postResponse.setTotalPages(pagePost.getTotalPages());
+        postResponse.setLastPage(pagePost.isLast());
+
+        return postResponse;
     }
 
     @Override
