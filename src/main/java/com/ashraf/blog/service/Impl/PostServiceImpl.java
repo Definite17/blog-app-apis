@@ -1,8 +1,8 @@
 package com.ashraf.blog.service.Impl;
 
-import com.ashraf.blog.entities.Category;
-import com.ashraf.blog.entities.Post;
-import com.ashraf.blog.entities.User;
+import com.ashraf.blog.models.Category;
+import com.ashraf.blog.models.Post;
+import com.ashraf.blog.models.User;
 import com.ashraf.blog.exception.ResourceNotFoundException;
 import com.ashraf.blog.payloads.PostDto;
 import com.ashraf.blog.payloads.PostResponse;
@@ -174,7 +174,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> searchPost(String keyword) {
-        return null;
+    public List<PostDto> searchPostByTitle(String keyword) {
+        List<Post> posts = this.postRepo.findByTitleContaining(keyword);
+
+        List<PostDto> postDtos = posts.stream().map((post)->this.modelMapper.map(post, PostDto.class))
+                .collect(Collectors.toList());
+
+        return postDtos;
     }
 }

@@ -1,6 +1,6 @@
 package com.ashraf.blog.service;
 
-import com.ashraf.blog.entities.Post;
+import com.ashraf.blog.models.Post;
 import com.ashraf.blog.payloads.PostDto;
 import com.ashraf.blog.payloads.PostResponse;
 
@@ -22,5 +22,5 @@ public interface PostService {
 
     PostResponse getPostByUser(Integer userId, Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
-    List<PostDto> searchPost(String keyword);
+    List<PostDto> searchPostByTitle(String keyword);
 }

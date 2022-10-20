@@ -1,6 +1,6 @@
 package com.ashraf.blog.service.Impl;
 
-import com.ashraf.blog.entities.Category;
+import com.ashraf.blog.models.Category;
 import com.ashraf.blog.exception.ResourceNotFoundException;
 import com.ashraf.blog.payloads.CategoryDto;
 import com.ashraf.blog.repository.CategoryRepo;

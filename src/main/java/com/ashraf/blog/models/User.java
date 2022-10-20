@@ -1,4 +1,4 @@
-package com.ashraf.blog.entities;
+package com.ashraf.blog.models;
 
 import javax.persistence.*;
 

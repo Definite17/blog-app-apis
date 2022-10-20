@@ -1,16 +1,14 @@
 package com.ashraf.blog.service.Impl;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ashraf.blog.exception.*;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.ashraf.blog.entities.User;
+import com.ashraf.blog.models.User;
 import com.ashraf.blog.payloads.UserDto;
 import com.ashraf.blog.repository.UserRepo;
 import com.ashraf.blog.service.UserService;
