@@ -20,7 +20,7 @@ public interface PostService {
 
     List<PostDto> getPostByCategory(Integer categoryId);
 
-    List<PostDto> getPostByUser(Integer userId);
+    PostResponse getPostByUser(Integer userId, Integer pageNumber, Integer pageSize);
 
     List<PostDto> searchPost(String keyword);
 }

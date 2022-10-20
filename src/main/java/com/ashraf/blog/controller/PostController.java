@@ -38,10 +38,12 @@ public class PostController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<PostDto>> getPostByUser(@PathVariable Integer userId){
-        List<PostDto> postDtos = this.postService.getPostByUser(userId);
+    public ResponseEntity<PostResponse> getPostByUser(@PathVariable Integer userId,
+                                                       @RequestParam(value = "pageNumber", defaultValue ="0", required = false) Integer pageNumber,
+                                                       @RequestParam(value = "pageSize", defaultValue = "2", required = false) Integer pageSize){
+        PostResponse postResponse = this.postService.getPostByUser(userId, pageNumber, pageSize);
 
-        return ResponseEntity.ok(postDtos);
+        return new ResponseEntity<>(postResponse, HttpStatus.OK);
     }
 
     @GetMapping("/all")
