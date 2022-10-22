@@ -10,11 +10,15 @@ import com.ashraf.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
@@ -109,13 +113,23 @@ public class PostController {
     //post image upload
     @PostMapping("/post/image/upload/{postId}")
     public ResponseEntity<PostDto> uploadPostImage(
-            @RequestParam("image")MultipartFile image,
+            @RequestParam("image") MultipartFile image,
             @PathVariable Integer postId
             ) throws IOException {
-        String fileName = this.fileService.uploadImage(path, image);
         PostDto postDto =this.postService.getPostById(postId);
-        postDto.setImageName(fileName);
+        String fileName = this.fileService.uploadImage(path, image);
+        postDto.setImgName(fileName);
         PostDto updatedPostDto=this.postService.updatePost(postDto, postId);
         return new ResponseEntity<PostDto>(updatedPostDto, HttpStatus.OK);
+    }
+
+    // Method to serve files
+    @GetMapping(value ="post/image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void downloadImage(@PathVariable("imageName") String imageName,
+                              HttpServletResponse response) throws IOException{
+
+        InputStream resource=this.fileService.getResource(path, imageName);
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(resource, response.getOutputStream());
     }
 }

@@ -65,7 +65,7 @@ public class PostServiceImpl implements PostService {
         //make sure this is not null
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
-//        post.setImgName(postDto.getImageName());
+        post.setImgName(postDto.getImgName());
 
         Post upadtedPost =this.postRepo.save(post);
         PostDto updatedPostDto=this.modelMapper.map(upadtedPost, PostDto.class);
