@@ -25,7 +25,7 @@ public class CategoryController {
         return new ResponseEntity<>(newCategoryDto, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{categoryId}")
+    @PutMapping("/update/{categoryId}")
     public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto categoryDto, @PathVariable Integer categoryId){
         CategoryDto updatedCategoryDto = this.categoryService.updateCategory(categoryDto, categoryId);
 

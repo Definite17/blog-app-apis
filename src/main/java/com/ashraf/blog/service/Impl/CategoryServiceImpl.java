@@ -34,11 +34,12 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = this.categoryRepo.findById(categoryId)
                 .orElseThrow(()-> new ResourceNotFoundException("Category", "Id", categoryId));
 
-        category.setCategoryId(categoryDto.getCategoryId());
         category.setCategoryTitle(categoryDto.getCategoryTitle());
-        category.setCategoryDescription(category.getCategoryDescription());
+        category.setCategoryDescription(categoryDto.getCategoryDescription());
 
-        CategoryDto updatedCategoryDto = this.modelMapper.map(category, CategoryDto.class);
+        Category updatedCategory = this.categoryRepo.save(category);
+
+        CategoryDto updatedCategoryDto = this.modelMapper.map(updatedCategory, CategoryDto.class);
         return updatedCategoryDto;
     }
 
