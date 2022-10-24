@@ -3,9 +3,13 @@ package com.ashraf.blog.service.Impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ashraf.blog.constants.AppConstants;
+import com.ashraf.blog.models.Role;
+import com.ashraf.blog.repository.RoleRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ashraf.blog.exception.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ashraf.blog.models.User;
@@ -20,6 +24,29 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired 
 	private UserRepo userRepo;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private RoleRepo roleRepo;
+
+	@Override
+	public UserDto registerNewUser(UserDto userDto) {
+
+		User user = this.modelMapper.map(userDto, User.class);
+
+		// password encoding
+		user.setPassword(this.passwordEncoder.encode(userDto.getPassword()));
+
+		// roles -> anyone registering we will assign { ROLE_NORMAL }
+		Role role = this.roleRepo.findById(AppConstants.NORMAL_USER).get();
+		user.getRoles().add(role);
+
+		User newUser = this.userRepo.save(user);
+
+		return this.modelMapper.map(newUser, UserDto.class);
+	}
 
 	@Override
 	public UserDto createUSer(UserDto userDto) {

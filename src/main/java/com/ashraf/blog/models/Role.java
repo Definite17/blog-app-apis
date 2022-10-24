@@ -12,8 +12,7 @@ import javax.persistence.Id;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; // not incrementing cz we will have few roles which we will define
 
     private String name;
 }

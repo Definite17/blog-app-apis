@@ -57,9 +57,7 @@ public class AuthController {
 
     private void authenticate(String username, String password) throws Exception {
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,
-                password);
-
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         try {
 
             this.authenticationManager.authenticate(authenticationToken);
@@ -68,6 +66,12 @@ public class AuthController {
             System.out.println("Invalid Detials !!");
             throw new ApiException("Invalid username or password !!");
         }
+    }
 
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
+        UserDto registeredUser = this.userService.registerNewUser(userDto);
+
+        return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 }

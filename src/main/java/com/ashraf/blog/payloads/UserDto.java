@@ -1,6 +1,8 @@
 package com.ashraf.blog.payloads;
 
 import com.ashraf.blog.models.Comment;
+import com.ashraf.blog.models.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,10 +29,13 @@ public class UserDto {
 
 	@NotEmpty // can use "@Pattern(regexp = "vv")" for specific pattern
 	@Size(min = 3, max = 10, message = "Password must be min 3 chars & max of 10 chars !")
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
 	@NotEmpty
 	private String about;
+
+	private Set<RolesDto> roles=new HashSet<>();
 
 //	private Set<Comment> comments=new HashSet<>();
 }
