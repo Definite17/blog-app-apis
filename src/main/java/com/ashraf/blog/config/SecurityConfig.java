@@ -26,6 +26,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebMvc
+@EnableWebSecurity
 public class SecurityConfig{
 
     /*
