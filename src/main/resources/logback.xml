@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+<!--        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+<!--            <providers>-->
+<!--                <timestamp/>-->
+<!--                &lt;!&ndash;            <message>message</message>&ndash;&gt;-->
+<!--                <pattern>-->
+<!--                    <pattern>-->
+<!--                        {-->
+<!--                        "thread":"%thread",-->
+<!--                        "message":"%message"-->
+<!--                        }-->
+<!--                    </pattern>-->
+<!--                </pattern>-->
+<!--            </providers>-->
+<!--        </encoder>-->
+        <encoder>
+        <pattern>
+            %d{dd-MM-yyyy HH:mm:ss.SSS} %yellow([%thread]) %highlight(%-5level) %logger{36} .%C %M - %msg%n%n
+        </pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
+
+        <!--    <springProfile name="development">-->
+        <!--        <root level="info">-->
+        <!--            <appender-ref ref="STDOUT"/>-->
+        <!--        </root>-->
+        <!--    </springProfile>-->
+
+
+        <!--&lt;!&ndash;Referennce&ndash;&gt;-->
+        <!--<encoder>-->
+        <!--<pattern>-->
+        <!--    %d{dd-MM-yyyy HH:mm:ss.SSS} %yellow([%thread]) %highlight(%-5level) %logger{36} .%C %M - %msg%n%n-->
+        <!--</pattern>-->
+        <!--</encoder>-->
