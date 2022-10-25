@@ -32,7 +32,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class SecurityConfig{
 
     /*
-    for those who are facing the issue of failed to load response
+    If facing the issue of failed to load response
     while accessing swagger-ui allow following pattern:-/v3/api-docs*//**.
      */
 
