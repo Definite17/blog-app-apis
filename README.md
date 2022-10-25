@@ -68,6 +68,7 @@ PUT /api/users/{userId}
 | Parameter | Type      | Description                                           |
 |:----------|:----------|:------------------------------------------------------|
 | `userId`  | `Integer` | **Required**. ID of the User you want to **UPDATE**   |
+
 **Required RequestBody** : UserDto
 ```json
 {
