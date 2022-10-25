@@ -7,18 +7,18 @@ Complete Backend Api for a Blog Application in SpringBoot with JWT Authenticatio
 This projects consists Enpoints for:-
 
 ### 1) Login and Registering a User.
-#### a) Login
+#### a) _createToken_
 User will need to Log in with his email as username(email) and password and JWTAuthentication token will be generated for him.
-```http
-  POST /api/v1/auth/login
+```html
+POST /api/v1/auth/login
 ```
 
-#### b) Registering User
+#### b) _registerUser_
 User Will be Registered and "ROLE_NORMAL" would be given to him, where he will be 
-
-```http
-  POST /api/v1/auth/register
+```html
+POST /api/v1/auth/register
 ```
+
 **Required RequestBody** : UserDto
 ```json
 {
@@ -38,7 +38,7 @@ User Will be Registered and "ROLE_NORMAL" would be given to him, where he will b
 ### 2) User API's
 All **CRUD** API's for user.
 
-#### a) createUser
+#### a) _createUser_
 API for adding user.
 ```html
 POST /api/users/create
@@ -59,15 +59,15 @@ POST /api/users/create
   ]
 }
 ```
-#### b) updateUser
+#### b) _updateUser_
 API for updating user Details.
 
 ```html
 PUT /api/users/{userId}
 ```
-| Parameter | Type      | Description                                             |
-|:----------|:----------|:--------------------------------------------------------|
-| `userId`  | `Integer` | **Required**. UserID of the User you want to **UPDATE** |
+| Parameter | Type      | Description                                           |
+|:----------|:----------|:------------------------------------------------------|
+| `userId`  | `Integer` | **Required**. ID of the User you want to **UPDATE**   |
 **Required RequestBody** : UserDto
 ```json
 {
@@ -85,17 +85,17 @@ PUT /api/users/{userId}
 }
 ```
 
-#### c) deleteUser
+#### c) _deleteUser_
 API for deleting existing user.
 ```html
 DELETE /api/users/{userId}
 ```
 
-| Parameter | Type      | Description                                               |
-|:----------|:----------|:----------------------------------------------------------|
-| `userId`  | `Integer` | **Required**. UserID of the User you want to _**DELETE**_ |
+| Parameter | Type      | Description                                              |
+|:----------|:----------|:---------------------------------------------------------|
+| `userId`  | `Integer` | **Required**. ID of the User you want to _**DELETE**_    |
 
-#### d) getUserById
+#### d) _getUserById_
 API for getting user Deatils by userId.
 ```html
 GET /api/users/{userId}
@@ -103,9 +103,9 @@ GET /api/users/{userId}
 
 | Parameter | Type      | Description                                            |
 |:----------|:----------|:-------------------------------------------------------|
-| `userId`  | `Integer` | **Required**. UserID of the User you want to _**GET**_ |
+| `userId`  | `Integer` | **Required**. ID of the User you want to _**GET**_     |
 
-#### e) getAllUsers
+#### e) _getAllUsers_
 API for getting All user details.
 ```html
 GET /api/users
@@ -113,7 +113,7 @@ GET /api/users
 
 ### 3)Posts API's
 API related to all the Post's in the **_BLOG_**
-#### a) createPost
+#### a) _createPost_
 API for creating a new Post
 ```html
 POST /api/posts/user/{userId}/category/{categoryId}/create
@@ -122,8 +122,8 @@ POST /api/posts/user/{userId}/category/{categoryId}/create
 
 | Parameter    | Type      | Description                              |
 |:-------------|:----------|:-----------------------------------------|
-| `userId`     | `Integer` | **Required**. UserID of the User.        |
-| `categoryId` | `Integer` | **Required**. categoryID of the Category |
+| `userId`     | `Integer` | **Required**. ID of the User.            |
+| `categoryId` | `Integer` | **Required**. ID of the Category         |
 
 **Required RequestBody** : PostDto
 ```json
@@ -165,9 +165,9 @@ API for updating the Post
 PUT /api/posts/update/{postId}
 ```
 
-| Parameter | Type      | Description                                               |
-|:----------|:----------|:----------------------------------------------------------|
-| `postId`  | `Integer` | **Required**. PostID of the User you want to _**UPDATE**_ |
+| Parameter | Type      | Description                                           |
+|:----------|:----------|:------------------------------------------------------|
+| `postId`  | `Integer` | **Required**. ID of the Post you want to _**UPDATE**_ |
 
 **Required RequestBody** : PostDto
 ```json
@@ -209,9 +209,9 @@ API for deleting a Post.
 DELETE api/posts/post/{postId}
 ```
 
-| Parameter | Type      | Description                                               |
-|:----------|:----------|:----------------------------------------------------------|
-| `postId`  | `Integer` | **Required**. PostID of the User you want to _**DELETE**_ |
+| Parameter | Type      | Description                                           |
+|:----------|:----------|:------------------------------------------------------|
+| `postId`  | `Integer` | **Required**. ID of the Post you want to _**DELETE**_ |
 
 
 #### d) _uploadPostImage_
@@ -221,10 +221,10 @@ API for uploading image to the Corresponding Post
 POST api/posts/post/image/upload/{postId}
 ```
 
-| Parameter | Type                  | Description                                               |
-|:----------|:----------------------|:----------------------------------------------------------|
-| `postId`  | `Integer`             | **Required**. PostID of the User you want to _**DELETE**_ |
-| `image`   | `multipart/form-data` | **Required**  Image file you want to upload               |
+| Parameter | Type                  | Description                                                    |
+|:----------|:----------------------|:---------------------------------------------------------------|
+| `postId`  | `Integer`             | **Required**. ID of the Post in which you want to Upload Image |
+| `image`   | `multipart/form-data` | **Required**  Image file you want to upload                    |
 
 #### e) _getPostById_
 API to get a post with its ID.
@@ -285,8 +285,81 @@ _**Required Parameter**_ : userId.
 
 _**Optional Parameter**_ : pageSize, pageNumber, sortBy, sortDir
 ### 4) Category API's
+API related to the Categories of the Posts.
+
+#### a) _createCategory_
+API to add/create a category.
+```html
+POST /api/categories/create
+```
+**_Required Request Body:-_** CategoryDto
+```json
+{
+  "categoryDescription": "string",
+  "categoryId": 0,
+  "categoryTitle": "string"
+}
+```
+
+#### b) _updateCategory_
+API to update a category.
+```html
+PUT /api/categories/{categoryId}
+```
+
+| Parameter    | Type      | Description                                                |
+|:-------------|:----------|:-----------------------------------------------------------|
+| `categoryId` | `Integer` | **Required**. Id of the Catgeory you want to **_UPDATE_**. |
+
+**_Required Request Body:-_** CategoryDto
+
+#### c) _deleteCategory_
+API to delete a Category.
+```html
+DELETE /api/categories/{categoryId}
+```
+**_Required Parameter:-_** categoryId
+
+#### d) _getAllCategory_
+API to get ALL Categories.
+```html
+GET /api/categories
+```
+
+#####  e) getCategoryById
+API to get a Category by its ID. 
+```html
+GET /api/categories/{categoryId}
+```
+**_Required Parameter:-_** categoryId
 
 
 ### 5) Comments API's
+API's Related to comments.
 
-## - - - - - - - -
+#### a) createComment
+API to create Comment.
+
+```html
+POST /api/comments/{postId}/create
+```
+**_Required Parameter:-_** postId
+
+**_Required Request Body:-_** CommentDto
+```json
+{
+  "content": "string",
+  "id": 0
+}
+```
+
+b) deleteComment
+API to delete a Comment.
+```html
+DELETE /api/comments/delete/{commentId}/
+```
+
+| Parameter   | Type      | Description                                               |
+|:------------|:----------|:----------------------------------------------------------|
+| `commentId` | `Integer` | **Required**. Id of the Comment you want to **_DELETE_**. |
+
