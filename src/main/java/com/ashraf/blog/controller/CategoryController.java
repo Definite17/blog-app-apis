@@ -1,6 +1,6 @@
 package com.ashraf.blog.controller;
 
-import com.ashraf.blog.payloads.ApiResponse;
+import com.ashraf.blog.payloads.responseDtos.ApiResponse;
 import com.ashraf.blog.payloads.CategoryDto;
 import com.ashraf.blog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

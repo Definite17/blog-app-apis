@@ -1,5 +1,6 @@
-package com.ashraf.blog.payloads;
+package com.ashraf.blog.payloads.responseDtos;
 
+import com.ashraf.blog.payloads.PostDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

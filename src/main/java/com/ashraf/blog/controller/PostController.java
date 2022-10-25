@@ -2,9 +2,9 @@ package com.ashraf.blog.controller;
 
 
 import com.ashraf.blog.constants.AppConstants;
-import com.ashraf.blog.payloads.ApiResponse;
+import com.ashraf.blog.payloads.responseDtos.ApiResponse;
 import com.ashraf.blog.payloads.PostDto;
-import com.ashraf.blog.payloads.PostResponse;
+import com.ashraf.blog.payloads.responseDtos.PostResponse;
 import com.ashraf.blog.service.FileService;
 import com.ashraf.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
-package com.ashraf.blog.payloads;
+package com.ashraf.blog.payloads.responseDtos;
 
+import com.ashraf.blog.payloads.UserDto;
 import lombok.Data;
 
 @Data

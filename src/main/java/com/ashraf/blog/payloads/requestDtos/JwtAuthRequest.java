@@ -1,4 +1,4 @@
-package com.ashraf.blog.payloads;
+package com.ashraf.blog.payloads.requestDtos;
 
 import lombok.Data;
 

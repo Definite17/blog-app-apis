@@ -1,4 +1,4 @@
-package com.ashraf.blog.payloads;
+package com.ashraf.blog.payloads.responseDtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,7 @@
 package com.ashraf.blog.service;
 
-import com.ashraf.blog.models.Post;
 import com.ashraf.blog.payloads.PostDto;
-import com.ashraf.blog.payloads.PostResponse;
+import com.ashraf.blog.payloads.responseDtos.PostResponse;
 
 import java.util.List;
 

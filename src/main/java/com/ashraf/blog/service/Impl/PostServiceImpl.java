@@ -5,7 +5,7 @@ import com.ashraf.blog.models.Post;
 import com.ashraf.blog.models.User;
 import com.ashraf.blog.exception.ResourceNotFoundException;
 import com.ashraf.blog.payloads.PostDto;
-import com.ashraf.blog.payloads.PostResponse;
+import com.ashraf.blog.payloads.responseDtos.PostResponse;
 import com.ashraf.blog.repository.CategoryRepo;
 import com.ashraf.blog.repository.PostRepo;
 import com.ashraf.blog.repository.UserRepo;

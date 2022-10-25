@@ -7,7 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.ashraf.blog.payloads.ApiResponse;
+import com.ashraf.blog.payloads.responseDtos.ApiResponse;
 
 import java.util.HashMap;
 import java.util.Map;
