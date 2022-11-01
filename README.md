@@ -1,6 +1,6 @@
 # Blog Application
 
-Complete Backend Api for a Blog Application in SpringBoot with JWT Authentication, Also Configured with Swagger for Api Documentation.
+Complete Backend Api for a Blog Application in SpringBoot with JWT Authentication, Also having configuration with Swagger-ui for Api Documentation.
 
 ## Api Enpoints
 
